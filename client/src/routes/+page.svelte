@@ -32,6 +32,7 @@
 
 
     let add_or_delete_like = async (post_id) => {
+      if(localStorage.getItem('id') != null && localStorage.getItem('id') != ""){
         let res = await fetch('http://localhost:8080/posts/add_or_delete_like', 
         {
             method: 'PUT',
@@ -42,6 +43,10 @@
           let post = posts.find(p => p.id == post_id)
           post.is_liked = !post.is_liked
           console.log(post)
+        }
+        }
+        else {
+          location.href = "/sign_in"
         }
     }
 

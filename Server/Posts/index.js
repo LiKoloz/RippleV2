@@ -59,19 +59,24 @@ amqp.connect(process.env.RABBITMQ_URL, function (error0, connection) {
                                     console.log("Posts: ++" + posts)
                                 }
                                 posts.posts = JSON.parse(JSON.stringify(posts.posts))
-                                for(let i = 0; i < posts.posts.length; i++){
-                                    let check_like = await repository.get_like(user_id, posts.posts[i].id)
-                                    console.log("like " + check_like)
-                                    console.log(`Like: auhtor: ${1} post : ${posts.posts[i].id} \n Result: ${check_like}`)
-                                    if(check_like != null){
-                                        console.log("lucky")
-                                        posts.posts[i]['is_liked'] = true
-                                    }
-                                    else{
-                                        console.log('ublucky')
+                                for (let i = 0; i < posts.posts.length; i++) {
+                                    console.log("uer_id: " + user_id)
+                                    if ( isNaN(user_id)) {
                                         posts.posts[i]['is_liked'] = false
                                     }
-                                    console.log(`RUS: ${JSON.stringify(posts.posts[i])}`)
+                                    else {
+                                        let check_like = await repository.get_like(user_id, posts.posts[i].id)
+                                        console.log("like " + check_like)
+                                        console.log(`Like: auhtor: ${1} post : ${posts.posts[i].id} \n Result: ${check_like}`)
+                                        if (check_like != null) {
+                                            console.log("lucky")
+                                            posts.posts[i]['is_liked'] = true
+                                        }
+                                        else {
+                                            console.log('unlucky')
+                                            posts.posts[i]['is_liked'] = false
+                                        }
+                                    }
                                 }
                                 
                                 posts = JSON.stringify(posts).toString()
