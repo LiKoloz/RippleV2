@@ -1,0 +1,19 @@
+{
+  "name": "gatewayapi",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": "Ilya",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "amqplib": "^0.10.7",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "uuid": "^11.1.0"
+  }
+}
