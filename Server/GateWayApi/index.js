@@ -13,7 +13,7 @@ app.use(bodyparser.urlencoded({ extended: true }));
 const port = process.env.PORT || 8080;
 
 app.use(cors({
- origin: 'http://localhost:5173'
+ origin: 'http://85.198.80.78:5173'
 }))
 
 app.use(( req, res, next) => {

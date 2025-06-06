@@ -3,7 +3,7 @@ var sq = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_
     dialect: "postgres",
     host: process.env.DB_HOST
 })
-
+ 
 exports.User = sq.define("user", {
     id: {
         type: Sequelize.INTEGER,
@@ -75,7 +75,7 @@ async function createAdminUser() {
             role: "admin",
             checked: true,
             email: 'admin@example.com',
-            password: '123' // В реальном приложении используйте хеширование!
+            password: '123' 
         });
         console.log('Admin user created successfully');
     } catch (error) {
