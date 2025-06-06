@@ -24,7 +24,7 @@
             return
         }
         else {
-            await fetch('http://localhost:8080/users/sign_up', {
+            await fetch('http://85.198.80.78:8080/users/sign_up', {
                 method: 'PUT',
                 headers: {
                     "Content-Type": "application/json"

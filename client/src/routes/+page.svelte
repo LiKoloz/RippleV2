@@ -9,7 +9,7 @@
 
 
     async function getPostsWithAutor(page) { 
-    const res = await fetch(`http://localhost:8080/posts/all/${page}`, {
+    const res = await fetch(`http://85.198.80.78:8080/posts/all/${page}`, {
       headers: {
         'user_id': localStorage.getItem('id')
       }
@@ -33,7 +33,7 @@
 
     let add_or_delete_like = async (post_id) => {
       if(localStorage.getItem('id') != null && localStorage.getItem('id') != ""){
-        let res = await fetch('http://localhost:8080/posts/add_or_delete_like', 
+        let res = await fetch('http://85.198.80.78:8080/posts/add_or_delete_like', 
         {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'}, 
