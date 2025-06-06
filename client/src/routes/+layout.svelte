@@ -26,7 +26,7 @@
                     <Container fluid style="margin-left: -50% !important;">
                         <div>
                             <a href="/">
-                                <h2 class='d-inline' style="font-family: 'Tesla';">Ripple</h2>
+                                <h2 class='d-inline' style="font-family: 'Tesla';">Пульсация</h2>
                             </a>
                         </div>
                     </Container>
@@ -56,7 +56,7 @@
 
     <footer class="pt-2" style="flex: 0 0 10%;">
         <div style="font-family: 'Tesla';">
-            <h3 style="padding-top: 10%; padding-left: 10%;">@Ripple</h3>
+            <h3 style="padding-top: 10%; padding-left: 10%;">@Пульсация</h3>
         </div>
         <div>
             <p>Контакты:  <b style="font-family: 'Tesla';">support@ripple.com</b>   
