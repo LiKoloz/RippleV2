@@ -16,7 +16,7 @@ export async function load({ params }) {
 
 let check_role = async () => {
     let email = localStorage.getItem("email")
-    let res = await fetch(`http://85.198.80.78:8080/users/role/${email}`)
+    let res = await fetch(`http://localhost:8080/users/role/${email}`)
 
     if(res.ok){
         let result = await res.text()

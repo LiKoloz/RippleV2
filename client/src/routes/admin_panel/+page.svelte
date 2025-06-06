@@ -9,7 +9,7 @@
     console.log("Posts:" + JSON.parse(JSON.stringify(posts)))
 
     async function getPostsWithAutor(page) { 
-    const res = await fetch(`http://85.198.80.78:8080/posts/all/noncheked/${page}`, {
+    const res = await fetch(`http://localhost:8080/posts/all/noncheked/${page}`, {
       headers: {
         'user_id': localStorage.getItem('id')
       }
@@ -43,7 +43,7 @@
       max_page = data.max_page
     }
     async function accept_all_posts() {
-        let res = await fetch("http://85.198.80.78:8080/posts/accept/all", {
+        let res = await fetch("http://localhost:8080/posts/accept/all", {
             method: "GET"
         })
         if (res.ok){
@@ -51,7 +51,7 @@
         }
     }
     async function reject_all_posts() {
-        let res = await fetch("http://85.198.80.78:8080/posts/reject/all", {
+        let res = await fetch("http://localhost:8080/posts/reject/all", {
             method: "DELETE"
         })
         if (res.ok){
@@ -59,7 +59,7 @@
         }
     }
     async function accept_post(id) {
-        let res = await fetch(`http://85.198.80.78:8080/posts/accept/${id}`, {
+        let res = await fetch(`http://localhost:8080/posts/accept/${id}`, {
             method: "GET"
         })
         console.log("RES OK:" + res.ok)
@@ -71,7 +71,7 @@
         }
     }
     async function reject_post(id) {
-        let res = await fetch(`http://85.198.80.78:8080/posts/reject/${id}`, {
+        let res = await fetch(`http://localhost:8080/posts/reject/${id}`, {
             method: "DELETE"
         })
         if (res.ok){
