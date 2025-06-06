@@ -82,7 +82,7 @@ services:
   gatewayapi:
     image: gatewayapi
     build:
-      context: ./Server/Gatewayapi
+      context: ./Server/GateWayApi
     environment:
       <<: *global-environment
       RABBITMQ_QUEUE: gatewayapi
