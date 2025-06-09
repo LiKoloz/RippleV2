@@ -17,14 +17,13 @@
 
    
     async function registration () {
-        if(code == "1239") console.log("Вы админ!")
         console.log(`${first_name} + ${password} + ${second_name} + ${nick_name}`)
         if(first_name == '' || password == '' || second_name == '' || nick_name == '') {
             alert('Заполните все поля!')
             return
         }
         else {
-            await fetch('http://localhost:8080/users/sign_up', {
+            let res = await fetch('http://localhost:8080/users/sign_up', {
                 method: 'PUT',
                 headers: {
                     "Content-Type": "application/json"
@@ -35,15 +34,24 @@
                     'email': email,
                     'nick_name': nick_name,
                     'password': password,
-                    'is_admin': code == "1239" ? "true" : "false"
+                    'is_admin': code == "1239" ? "true" : "false",
+                    'role': (function() {
+                        if(code == "1239")
+                            return "admin"
+                        else if(code == "987")
+                            return "moder"
+                         return "user"
+                    }())
                 })
             }).then(async (response) => {
                 if (response.ok) {
                     let body = await response.json()
-                    console.log(body)
+                    console.log("ЭЭЭУ " + body.toString())
                     for (let i in body) {
+                        console.log(i + ' - bodyy')
                         localStorage.setItem(i, body[i]);
                     }
+                    console.log(body.id+ "id")
                     window.location.href = "/";
                 }
             })

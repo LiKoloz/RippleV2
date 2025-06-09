@@ -6,7 +6,6 @@ exports.get_user = async (email) => {
 }
 
 exports.get_user_role_by_email = async (email) => {
-    console.log("YYYYYYYYYYYYYYYYYYYEEEEEEEEE")
     let res = await send_service_to_user.get_user_by_email(email)
     console.log("RESSS" + res)
     res = JSON.parse(res).role
@@ -22,19 +21,23 @@ exports.sign_in_default = async (user) => {
     return await send_service_to_auth.sign_in_default({ false_user: user, true_user: true_user });
 }
 
-
 exports.sign_up_default = async (user) => {
-    let check = await send_service_to_user.create_user(user)
-    console.log(check + "CHECKCHECK")
-    if(check == 'true') {
-        let jwt = await send_service_to_auth.sign_up_default(user)
-        console.log("JWT +", jwt)
+    let res = await send_service_to_user.create_user(user);
+        console.log("User service response:", res);
+    res = JSON.parse(res)
+    let check = res.check;
+    console.log("Check value:", check);
+    
+    if (check == 'true') {
+        let jwt = await send_service_to_auth.sign_up_default(user);
+        console.log("JWT:", jwt);
         return {
             email: user.email,
-            jwt: jwt
-        }
+            jwt: jwt,
+            id: res.id
+        };
     }
-    return await send_service_to_auth.sign_up_default(user);
+    return {};
 }
 
 exports.update_user = async (user) => {

@@ -67,7 +67,7 @@
             posts = posts.filter(p => p.id != id)
         }
         else{
-            console.log("UDI")
+            console.log("RES NOT OK")
         }
     }
     async function reject_post(id) {
@@ -75,11 +75,9 @@
             method: "DELETE"
         })
         if (res.ok){
-            console.log("URRA")
             posts = posts.filter(p => p.id != id)
         }
         else{
-            console.log("UDI")
         }
     }
 

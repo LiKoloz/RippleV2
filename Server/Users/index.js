@@ -49,12 +49,15 @@ amqp.connect(process.env.RABBITMQ_URL, function (error0, connection) {
                             break;
                         case "create":
                             user = JSON.parse(msg.content);
-                            let result = false
-                            console.log(user.nick_name + "JOPA")
-                            await repository.create(user).then(() => result = true);
+                            let result = {check: false}
+                            console.log(user.nick_name)
+                            await repository.create(user).then(async () =>{ 
+                                await repository.get_by_email(user.email)
+                                    .then( (user2) => result = {check: "true", id: user2.id})
+                            });
                             console.log("res + ",result)
                             channel.sendToQueue(msg.properties.replyTo,
-                                Buffer.from(result.toString()), {
+                                Buffer.from(JSON.stringify(result).toString()), {
                                 correlationId: msg.properties.correlationId
                             });
                             channel.ack(msg);

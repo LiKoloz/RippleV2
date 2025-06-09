@@ -12,7 +12,8 @@ exports.repository = () => {
             second_name: user.second_name,
             nick_name: user.nick_name,
             password: user.password,
-            email: user.email
+            email: user.email,
+            role: user.role
         }).then(user => console.log('СОЗДАН ПОЛЬЗОВАТЕЛЬ'+ '\n' + user.id)).catch(err => console.log(err));
     },
     // ОБНВОЛЕНИЕ ПОЛЬЗОВАТЕЛЯ

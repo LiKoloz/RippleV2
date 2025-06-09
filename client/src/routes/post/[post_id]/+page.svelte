@@ -7,7 +7,7 @@
     let new_comment = $state('')
     let validated = false;
     let comments = $state(post.comments)
-    let role = $state(data.role)
+    let role = $state(data.role.trim())
     
     let add_or_delete_like = async () => {
         let res = await fetch('http://localhost:8080/posts/add_or_delete_like', 
@@ -87,7 +87,7 @@
                   </div>
                 </button>
             </div>
-            {#if post.author_id == localStorage.getItem("id") || role == "admin"}
+            {#if post.author_id == localStorage.getItem("id") || role == "admin" || role=="moder"}
             <div class="d-flex align-items-center flex-row gap-2">
                 <button type="button" onclick={() => delete_post()} class="btn btn-outline"> 
                   <div class="d-flex align-items-center flex-row gap-2"> 
@@ -111,7 +111,7 @@
                 <CardBody>
                     <CardText>{comment.content}</CardText>
                 </CardBody>
-                {#if comment.user.id == localStorage.getItem("id") || role == "admin"}
+                {#if comment.user.id == localStorage.getItem("id") || role == "admin" || role=="moder"}
                 <CardFooter class="d-flex justify-content-center">
                     <Button onclick={async () => await delete_comment(comment)} class="ms-2 " color=""><i class="bi bi-trash"></i></Button>
                 </CardFooter>

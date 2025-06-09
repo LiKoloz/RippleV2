@@ -4,8 +4,9 @@ exports.sign_up_default = async (req, res) => {
     let body = req.body
     await user_services.sign_up_default(body)
         .then((user) => {
-            console.log(user)
+            console.log("Get User+ " + JSON.stringify(user).toString())
             if(user.jwt)
+                console.log(JSON.stringify(user).toString())
                 return res.status(200).json(user)
             return res.status(500)
         })

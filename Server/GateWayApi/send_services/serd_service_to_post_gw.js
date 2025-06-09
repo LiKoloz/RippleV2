@@ -584,9 +584,7 @@ exports.reject_post = (id) => {
                                     type: "delete_rating"
                                 }
                             });
-                            console.log("{SGE{GESESF")
                             resolve("true"); // Разрешаем промис с полученным сообщением
-                            console.log("OPOIPJ:JIO:")
                             setTimeout(function () {
                                 connection.close();
                             }, 500);
