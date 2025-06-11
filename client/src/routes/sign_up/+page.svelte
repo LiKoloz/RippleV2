@@ -97,7 +97,9 @@
         <Input class="area mt-2" v
             bind:value={password} 
             required
-            placeholder="Введите пароль"></Input>
+            placeholder="Введите пароль"
+            minlength=4
+            ></Input>
     </FormGroup>
     <FormGroup class="mt-3">
         <h3>Пригасительный код (если имеется)</h3>

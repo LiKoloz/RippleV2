@@ -44,7 +44,10 @@
         <Input class="area mt-2" 
             bind:value={title} 
             required
-            placeholder="Введите заголовок"></Input>
+            placeholder="Введите заголовок"
+            maxlength = 50
+            >
+        </Input>
     </FormGroup>
     <FormGroup class="area mt-3">
         <h3>Содержание</h3>
@@ -52,7 +55,9 @@
         style="height: 30vh;"
             bind:value={mainText} 
             required
-            placeholder="Введите содержание"></Input>
+            placeholder="Введите содержание"
+            maxlength = 2000
+            ></Input>
     </FormGroup>
     <div class="d-flex justify-content-center">
         <Button outline 
@@ -64,10 +69,10 @@
     </div>
     <Modal  isOpen={open} {toggle}>
         <ModalBody>
-            <h4>Пост пост отправлен на проверку</h4>
+            <h4>Пост отправлен на проверку</h4>
             <hr>
             <p>
-                Пост отарвлен на проверку администраторам, после проверки он будет опубликован
+                Пост отправлен на проверку администраторам, после проверки он будет опубликован
             </p>
         </ModalBody>
     </Modal>
