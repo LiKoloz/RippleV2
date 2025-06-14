@@ -126,7 +126,7 @@ amqp.connect(process.env.RABBITMQ_URL, function (error0, connection) {
                             case "create":
                                 user = JSON.parse(msg.content.toString());
                                 console.log(`Bad content: ${user.content}`)
-                                user.bad_words =bad_words_regex.test(user.content + " " + user.title)
+                                user.bad_words = bad_words_regex.test(user.content + " " + user.title) || (user.content + " " + user.title).toLowerCase().includes("плохо")
                                 console.log(`Bad words: ${user.bad_words}`)
                                 await repository.create(user);
                                 channel.sendToQueue(msg.properties.replyTo,

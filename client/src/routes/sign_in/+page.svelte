@@ -13,7 +13,7 @@
 
     async function signIn () {
         console.log("Вход")
-        let res = await fetch('http://85.198.80.78:8080/users/sign_in', {
+        let res = await fetch('http://localhost:8080/users/sign_in', {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json"
