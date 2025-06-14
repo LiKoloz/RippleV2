@@ -56,7 +56,7 @@
             bind:value={mainText} 
             required
             placeholder="Введите содержание"
-            maxlength = 2000
+            maxlength = 200
             ></Input>
     </FormGroup>
     <div class="d-flex justify-content-center">
