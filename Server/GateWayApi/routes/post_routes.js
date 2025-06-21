@@ -5,7 +5,10 @@ const post_controller = require("../controllers/post_controller");
 post_router.get("/all/noncheked/:page", post_controller.get_all_pagination_post_non_checked);
 post_router.get("/all/:page", post_controller.get_all_pagination_post_checked);
 post_router.get("/all", post_controller.get_all_post);
+
 post_router.post("/create", post_controller.create_post);
+post_router.post("/like", post_controller.post_like)
+
 post_router.put("/add_or_delete_like", post_controller.add_or_delete_like)
 post_router.put("/update", post_controller.update_post);
 

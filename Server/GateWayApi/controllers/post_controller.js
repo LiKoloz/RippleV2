@@ -6,7 +6,7 @@ exports.update_post = async (req, res) => await post_services.update_post(req.bo
 
 exports.delete_post = async (req, res) => await post_services.delete_post(req.body).then((post) => res.status(200).json(post)).catch((err) => res.status(500).json(err));
 
-exports.add_or_delete_like = async (req, res) => {console.log("BODY BODY" + JSON.stringify(req.body));return await post_services.add_or_delete_like(req.body).then((post) => res.status(200).json(post)).catch((err) => res.status(500).json(err));}
+exports.add_or_delete_like = async (req, res) => await post_services.add_or_delete_like(req.body).then((post) => res.status(200).json(post)).catch((err) => res.status(500).json(err));
 
 exports.get_post = async (req, res) => await post_services.get_post(req.params["id"]).then((post) => res.status(200).json(post)).catch((err) => res.status(500).json(err));
 
@@ -30,3 +30,13 @@ exports.accept_all_posts = async (req, res) => await post_services.accept_all_po
 exports.reject_post = async (req, res) => await post_services.reject_post({id: req.params["post_id"]}).then(() => {console.log("Пост отклонен"); return res.sendStatus(200)}).catch((err) => res.status(500).json(err))
 
 exports.accept_post = async (req, res) => await post_services.accept_post({id: req.params["post_id"]}).then(() => res.status(200)).catch((err) => res.status(500).json(err))
+
+exports.post_like = async (req, res) => await post_services.post_like(req.body).then((data) => {
+    console.log("Data++ ",data)
+    if(data != 'null'){
+        res.status(200).json()
+    }
+    else{
+        res.status(500).json()
+    }
+}).catch((err) => res.status(500).json(err))

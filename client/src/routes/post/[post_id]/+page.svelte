@@ -8,7 +8,7 @@
     let validated = false;
     let comments = $state(post.comments)
     let role = $state(data.role.trim())
-    
+    console.log("liked: ", post)
     let add_or_delete_like = async () => {
         let res = await fetch('http://localhost:8080/posts/add_or_delete_like', 
         {
@@ -75,7 +75,7 @@
             <div class="d-flex align-items-center flex-row gap-2">
               <button type="button" onclick={() => add_or_delete_like()} class="btn btn-outline"> 
                 <div class="d-flex align-items-center flex-row gap-2"> 
-                    {#if post.is_liked} <i class="bi bi-heart-fill"></i>
+                    {#if post.is_liked===true} <i class="bi bi-heart-fill"></i>
                     {:else} <i class="bi bi-heart"></i> {/if} {post.likes}
                 </div>
               </button>

@@ -1,7 +1,11 @@
 const Sequelize = require("sequelize");
 var sq = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
     dialect: "postgres",
-    host: process.env.DB_HOST
+    host: process.env.DB_HOST,
+    define: {
+        freezeTableName: true,
+        underscored: false
+    }
 })
  
 exports.User = sq.define("user", {
@@ -39,6 +43,8 @@ exports.User = sq.define("user", {
         type: Sequelize.INTEGER,
         defaultValue: 10
     }
+}, {
+    tableName: 'user'
 });
 
 exports.Rating_history = sq.define("likes_history", {
@@ -64,6 +70,8 @@ exports.Rating_history = sq.define("likes_history", {
         type: Sequelize.INTEGER,
         allowNull: false
     }
+}, {
+    tableName: 'likes_history'
 });
 
 async function createAdminUser() {
@@ -84,7 +92,7 @@ async function createAdminUser() {
 }
 
 // Синхронизация и создание админа
-sq.sync({ force: true })
+sq.sync()
     .then(() => {
         console.log("Database synced");
         return createAdminUser();

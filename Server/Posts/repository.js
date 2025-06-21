@@ -65,10 +65,9 @@ exports.repository = () => {
         }
       })
     },
-    update_likes: async (post_id) => {
-      let post = await this.get_post_by_id(post_id)
+    update_likes: async (post_id, likes) => {
       return await db.Post.update({
-        likes: post.likes + 1
+        likes: likes + 1
       },{
         where:{
           id:post_id
@@ -78,8 +77,8 @@ exports.repository = () => {
     get_like: async (user_id, post_id) =>{
       return await db.Likes.findOne({
         where: {
-          user_id: user_id,
-          post_id: post_id
+          post_id: post_id,
+          user_id: user_id
         }
       })
     },

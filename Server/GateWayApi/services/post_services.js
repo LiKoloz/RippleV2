@@ -47,3 +47,7 @@ exports.reject_post = async (data) => {
 exports.accept_post = async (data) => {
     return await send_service_to_post_gw.accept_post(data.id)
 }
+
+exports.post_like = async (data) => {
+    return await send_service_to_post_gw.post_like(data)
+}

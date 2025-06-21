@@ -86,7 +86,8 @@ amqp.connect(process.env.RABBITMQ_URL, function (error0, connection) {
                             console.log(`IDS: ${ids}`)
                             let authors = []
                             for(let i = 0; i < ids.length; i++){
-                                let author = await repository.get_by_id(ids[i])
+                                if(isNaN(ids[i])) return
+                                let author = await repository.get_by_id(parseInt(ids[i]))
                                 authors.push(author)
                             }
                             console.log(`Отправили: ${JSON.stringify(authors).toString()}`)
@@ -96,20 +97,31 @@ amqp.connect(process.env.RABBITMQ_URL, function (error0, connection) {
                             });
                             channel.ack(msg);
                             break;
-                        case "add_rating":
-                            console.log("add_rating")
-                            data = JSON.parse(msg.content.toString())
-                            console.log(data)
-                            await repository.add_rating(data.user_id, data.rating)
-                            await repository.add_rating_history(data.user_id, data.id, data.type, data.rating)
+                        case "add_or_delete_rating":
+                            console.log("add_or_delete_rating");
+                            const data = JSON.parse(msg.content.toString());
+                            console.log("DATA USER: ", data);
+                            if (parseInt(data.rating) >= 0) {
+                                await repository.add_rating(data.user_id, data.rating);
+                            } else {
+                                await repository.decrease_rating(data.user_id, Math.abs(data.rating));
+                            }
+                            await repository.add_rating_history(data.user_id, data.id, data.type, data.rating);
                             channel.ack(msg);
                             break;
                         case "delete_rating":
-                            console.log("delete_rating")
-                            data = JSON.parse(msg.content.toString())
-                            console.log(data)
-                            await repository.decrease_rating(data.user_id, data.rating)
-                            await repository.add_rating_history(data.user_id, data.id, data.type, data.rating)
+                            console.log("delete_rating");
+                            const delData = JSON.parse(msg.content.toString());
+                            console.log("DATA USER: ", delData);
+                            await repository.decrease_rating(delData.user_id, delData.rating);
+                            await repository.add_rating_history(delData.user_id, delData.id, delData.type, delData.rating);
+                            channel.ack(msg);
+                            break;
+                        case "add_rating":
+                            data = JSON.parse(msg.content.toString());
+                            console.log("ДОБАВЛЯЕМ РЕЙТИНГ", data);
+                            await repository.add_rating(data.user_id, data.rating);
+                            await repository.add_rating_history(data.user_id, data.id, data.type, data.rating);
                             channel.ack(msg);
                             break;
                         case "get_user_rating_history":

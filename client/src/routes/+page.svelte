@@ -94,7 +94,7 @@
                       </button>
                     </div>
                     <div class="d-flex align-items-center flex-row gap-2" onclick={() => location.href = "/post/" + post.id }>
-                        <button type="button" onclick={() => add_or_delete_like(post.id)} class="btn btn-outline"  aria-label="Комментарии"> 
+                        <button type="button" class="btn btn-outline"  aria-label="Комментарии"> 
                           <div class="d-flex align-items-center flex-row gap-2"> 
                             <i class="bi bi-chat-left-text"></i> 
                           </div>

@@ -469,7 +469,7 @@ exports.add_or_delete_like = (data) => {
                         Buffer.from(JSON.stringify(data).toString()), {
                         headers: {
                             sender: "gatewayapi",
-                            type: "add_rating"
+                            type: "add_or_delete_rating"
                         }
                     });
                 });
@@ -636,6 +636,46 @@ exports.accept_post = (id) => {
                         headers: {
                             sender: "gatewayapi",
                             type: "accept_post"
+                        }
+                    });
+                });
+            });
+        });
+    });
+}
+
+exports.post_like = (data) => {
+    return new Promise((resolve, reject) => {
+        amqp.connect(process.env.RABBITMQ_URL, function (error0, connection) {
+            if (error0) {
+                return reject(error0); // Отклоняем промис при ошибке подключения
+            }
+            connection.createChannel(function (error1, channel) {
+                if (error1) {
+                    return reject(error1); // Отклоняем промис при ошибке создания канала
+                }
+                channel.assertQueue('', { exclusive: true }, function (error2, q) {
+                    if (error2) {
+                        return reject(error2); // Отклоняем промис при ошибке создания очереди
+                    }
+                    const correlationId = generateUuid();
+
+                    channel.consume(q.queue, function (msg) {
+                        if (msg.properties.correlationId === correlationId) {
+                            console.log(' [.] Got %s', msg.content);
+                            resolve(msg.content.toString()); // Разрешаем промис с полученным сообщением
+                            setTimeout(function () {
+                                connection.close();
+                            }, 500);
+                        }
+                    }, { noAck: false });
+                    channel.sendToQueue(process.env.POSTS_QUEUE,
+                        Buffer.from(JSON.stringify(data).toString()), {
+                        correlationId: correlationId,
+                        replyTo: q.queue,
+                        headers: {
+                            sender: "gatewayapi",
+                            type: "post_like"
                         }
                     });
                 });
