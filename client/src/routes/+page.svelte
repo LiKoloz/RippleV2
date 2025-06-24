@@ -9,7 +9,7 @@
 
 
     async function getPostsWithAutor(page) { 
-    const res = await fetch(`http://localhost:8080/posts/all/${page}`, {
+    const res = await fetch(`http://85.198.80.78:8080/posts/all/${page}`, {
       headers: {
         'user_id': localStorage.getItem('id')
       }
@@ -33,7 +33,7 @@
 
     let add_or_delete_like = async (post_id) => {
       if(localStorage.getItem('id') != null && localStorage.getItem('id') != ""){
-        let res = await fetch('http://localhost:8080/posts/add_or_delete_like', 
+        let res = await fetch('http://85.198.80.78:8080/posts/add_or_delete_like', 
         {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'}, 
@@ -93,7 +93,7 @@
                         </div>
                       </button>
                     </div>
-                    <div class="d-flex align-items-center flex-row gap-2" onclick={() => location.href = "/post/" + post.id }>
+                    <div class="d-flex align-items-center flex-row gap-2" aria-atomic="на главную" onclick={() => location.href = "/post/" + post.id }>
                         <button type="button" class="btn btn-outline"  aria-label="Комментарии"> 
                           <div class="d-flex align-items-center flex-row gap-2"> 
                             <i class="bi bi-chat-left-text"></i> 

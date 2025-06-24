@@ -99,7 +99,7 @@ amqp.connect(process.env.RABBITMQ_URL, function (error0, connection) {
                             break;
                         case "add_or_delete_rating":
                             console.log("add_or_delete_rating");
-                            const data = JSON.parse(msg.content.toString());
+                             data = JSON.parse(msg.content.toString());
                             console.log("DATA USER: ", data);
                             if (parseInt(data.rating) >= 0) {
                                 await repository.add_rating(data.user_id, data.rating);
@@ -118,7 +118,7 @@ amqp.connect(process.env.RABBITMQ_URL, function (error0, connection) {
                             channel.ack(msg);
                             break;
                         case "add_rating":
-                            data = JSON.parse(msg.content.toString());
+                             data = JSON.parse(msg.content.toString());
                             console.log("ДОБАВЛЯЕМ РЕЙТИНГ", data);
                             await repository.add_rating(data.user_id, data.rating);
                             await repository.add_rating_history(data.user_id, data.id, data.type, data.rating);
@@ -126,7 +126,7 @@ amqp.connect(process.env.RABBITMQ_URL, function (error0, connection) {
                             break;
                         case "get_user_rating_history":
                             console.log("get_user_rating_history")
-                            data = (msg.content.toString())
+                             data = (msg.content.toString())
                             console.log(data)
                             let history = await repository.get_user_rating_history(data)
                             console.log(history)

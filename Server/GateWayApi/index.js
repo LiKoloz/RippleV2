@@ -6,6 +6,8 @@ const post_router = require("./routes/post_routes");
 const user_router = require("./routes/user_routes");
 const comment_router = require("./routes/comment_routes")
 const bodyparser = require("body-parser");
+const timeout = require('connect-timeout');
+
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
@@ -13,8 +15,9 @@ app.use(bodyparser.urlencoded({ extended: true }));
 const port = process.env.PORT || 8080;
 
 app.use(cors({
- origin: 'http://localhost:5173'
+ origin: 'http://85.198.80.78:5173'
 }))
+app.use(timeout('5000'));
 
 app.use(( req, res, next) => {
   console.log(req.body)  
@@ -30,6 +33,8 @@ app.get("/", (req, res) => {
 app.use("/users", user_router);
 app.use("/posts", post_router);
 app.use("/comments", comment_router)
+
+
 
 // Обработчик 404 для несуществующих маршрутов
 app.use(function (req, res) {

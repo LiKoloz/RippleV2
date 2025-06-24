@@ -12,8 +12,8 @@ export async function load({ params }) {
 
 async function getData(id) {
     let email = localStorage.getItem("email")
-    console.log(`http://localhost:8080/users/get/${id}`)
-    const res = await fetch(`http://localhost:8080/users/get/${id}`);
+    console.log(`http://85.198.80.78:8080/users/get/${id}`)
+    const res = await fetch(`http://85.198.80.78:8080/users/get/${id}`);
 
     const user = await res.json(); 
 
@@ -21,7 +21,7 @@ async function getData(id) {
 }
 
 async function rating_history(id){
-  const res = await fetch(`http://localhost:8080/users/rating/history/${id}`);
+  const res = await fetch(`http://85.198.80.78:8080/users/rating/history/${id}`);
 
   const rating_history = await res.json(); 
 
