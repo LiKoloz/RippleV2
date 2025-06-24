@@ -93,13 +93,15 @@
                         </div>
                       </button>
                     </div>
-                    <div class="d-flex align-items-center flex-row gap-2" aria-atomic="на главную" onclick={() => location.href = "/post/" + post.id }>
+                    <a href='/post/ + ${post.id}'>
+                    <div class="d-flex align-items-center flex-row gap-2" aria-atomic="на главную">
                         <button type="button" class="btn btn-outline"  aria-label="Комментарии"> 
                           <div class="d-flex align-items-center flex-row gap-2"> 
                             <i class="bi bi-chat-left-text"></i> 
                           </div>
                         </button>
                       </div>
+                      </a>
                 </CardFooter>
             </Card>
         </div>
