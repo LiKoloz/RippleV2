@@ -137,7 +137,7 @@ async function generateTestPosts() {
 
 sq.sync({force: true}).then(() => {
     console.log("Database synced");
-    // generateTestPosts();
+    generateTestPosts();
 }).catch((error) => {
     console.log(error)
 });
