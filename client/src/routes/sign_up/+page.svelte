@@ -23,7 +23,7 @@
             return
         }
         else {
-            let res = await fetch('http://85.198.80.78:8080/users/sign_up', {
+            let res = await fetch('http://80.242.57.142:8080/users/sign_up', {
                 method: 'PUT',
                 headers: {
                     "Content-Type": "application/json"

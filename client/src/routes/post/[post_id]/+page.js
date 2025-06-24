@@ -7,7 +7,7 @@ export async function load({ params }) {
 }
 
 async function getPostsWithAutor(params) { 
-    let res = await fetch(`http://85.198.80.78:8080/posts/${params.post_id}`);
+    let res = await fetch(`http://80.242.57.142:8080/posts/${params.post_id}`);
 
     if(res.ok){
         let body = await res.json()
@@ -20,7 +20,7 @@ async function getPostsWithAutor(params) {
 let check_role = async () => {
     let email = localStorage.getItem("email")
     if(!email || email =='') return "none"
-    let res = await fetch(`http://85.198.80.78:8080/users/role/${email}`)
+    let res = await fetch(`http://80.242.57.142:8080/users/role/${email}`)
 
     if(res.ok){
         let result = await res.text()
@@ -32,7 +32,7 @@ let check_role = async () => {
 let check_like = async(post_id) => {
     let email = localStorage.getItem("email")
     if(!email || email =='') return "false" 
-    let res = await fetch(`http://85.198.80.78:8080/posts/like`,{
+    let res = await fetch(`http://80.242.57.142:8080/posts/like`,{
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({user_id: localStorage.getItem("id"), post_id: post_id})

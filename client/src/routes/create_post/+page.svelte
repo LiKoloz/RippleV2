@@ -16,7 +16,7 @@
 
     async function create_post() {
         if(title.length == 0 || mainText.length == 0) return
-        var res = await fetch('http://85.198.80.78:8080/posts/create', {
+        var res = await fetch('http://80.242.57.142:8080/posts/create', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"

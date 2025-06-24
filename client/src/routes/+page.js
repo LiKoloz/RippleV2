@@ -5,7 +5,7 @@ export async function load({ params }) {
 }
 
 async function getPostsWithAutor() {
-    const res = await fetch('http://85.198.80.78:8080/posts/all/1', {
+    const res = await fetch('http://80.242.57.142:8080/posts/all/1', {
         headers: {
             'user_id': localStorage.getItem('id')
         }

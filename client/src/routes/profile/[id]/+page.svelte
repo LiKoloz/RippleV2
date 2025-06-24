@@ -24,7 +24,7 @@
     let update_user = async () => {
         user = {...user, first_name: first_name, second_name: second_name, nick_name: nick_name, email: email, password: password}
         console.log(user)
-        let res = await fetch("http://85.198.80.78:8080/users/update", {
+        let res = await fetch("http://80.242.57.142:8080/users/update", {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json"
