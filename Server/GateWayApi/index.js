@@ -17,7 +17,6 @@ const port = process.env.PORT || 8080;
 app.use(cors({
  origin: 'http://85.198.80.78:5173'
 }))
-app.use(timeout('5000'));
 
 app.use(( req, res, next) => {
   console.log(req.body)  
